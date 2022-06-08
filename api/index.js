@@ -17,9 +17,9 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//CAMBIAR A FORCE:TRUE ANTES DE ENTREGAR!
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
