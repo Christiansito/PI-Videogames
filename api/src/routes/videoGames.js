@@ -87,7 +87,7 @@ const getApiGames = async () => {
         }
     })
 
-    let result = await allDb.filter(e => e.name.toLowerCase().includes(n.toLowerCase()));
+    let result = await allDb.filter(f => f.name.toLowerCase().includes(n.toLowerCase()));
 
     return result;
 };

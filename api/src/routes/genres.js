@@ -16,30 +16,28 @@ const allGenres = async () => {
       try {
         const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
         const genreData = await genresApi.data.results;
-         console.log(genreData);
-        const genreLimpio = genreData.map((e) => e.name);
-        // console.log(genreLimpio);
-        genreLimpio.map(
-          async (e) =>
+        const mappedGenre = genreData.map((f) => f.name);
+
+        mappedGenre.map(
+          async (f) =>
             await Genre.findOrCreate({
-              //si lo encuentra no lo crea
               where: {
-                name: e,
+                name: f,
               },
             })
         );
-        return genreLimpio;
+        return mappedGenre;
       } catch (error) {
         console.log(error);
       }
     } else {
-      return genrDb.map((e) => e.name); //que solo me devuelva el nombre
+      return genrDb.map((e) => e.name); 
     }
   };
 
 router.get("/genres", async (req, res) => {
-    const todosGenr = await allGenres();
-    res.send(todosGenr);
+    const allGenr = await allGenres();
+    res.status(200).send(allGenr);
   });
 
   module.exports = router;

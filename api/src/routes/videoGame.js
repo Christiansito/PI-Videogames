@@ -50,29 +50,31 @@ router.get('/videogame/:id', async (req,res) =>{
     const {id} = req.params
     try{
        const allGamesId = await AllGamesById(id);
-       return res.send(allGamesId) 
+       return res.status(200).send(allGamesId) 
     } catch(error) {
          res.status(404).json({error:error})
     }
 });
-
 router.post("/videogame", async (req, res) => {
-    let { name, description, releaseDate, rating, genres, platforms } = req.body;
-    try {
-      const gameCreated = await Videogame.findOrCreate({
-        where: {
-          name,
-          description,
-          releaseDate,
-          rating,
-          platforms,
-        },
-      });
-      await gameCreated[0].setGenres(genres); 
-    } catch (err) {
-      console.log(err);
-    }
-    res.send("Created succesfully");
+  let { name, description, released, rating, genres, platforms, createdVideoGame } = req.body;
+  try {
+    const gameCreated = await Videogame.findOrCreate({
+      where: {
+        name,
+        description,
+        released,
+        rating,
+        platforms,
+        createdVideoGame
+      },
+    });
+    await gameCreated[0].setGenres(genres); 
+  } catch (err) {
+    console.log(err);
+  }
+  res.send("Created succesfully");
 });
+
+
 
 module.exports = router;

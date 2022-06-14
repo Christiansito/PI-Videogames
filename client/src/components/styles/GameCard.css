@@ -1,0 +1,19 @@
+.card {
+    width: 500px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.808);
+    border-radius: 1px;
+    line-height: 2px;
+    margin: 3px;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.705);
+}
+
+.rating {
+    float: right;
+}
+
+.name {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
